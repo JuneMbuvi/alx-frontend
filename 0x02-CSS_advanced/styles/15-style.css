@@ -347,7 +347,7 @@ template {
 [hidden] {
   display: none;
 }
-.box {
+*, *::before, *::after {
 	box-sizing: border-box;
 }
 
