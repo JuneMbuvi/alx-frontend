@@ -25,7 +25,7 @@ a:visited {
 	font-style: italic;
 }
 a:hover {
-	text-decorate: underline;
+	text-decoration: underline;
 }
 a:active {
 	background-color: var(--color-light-grey);
