@@ -347,6 +347,9 @@ template {
 [hidden] {
   display: none;
 }
+.box {
+	box-sizing: content-box;
+}
 
 html {
 	scroll-behavior: smooth;
