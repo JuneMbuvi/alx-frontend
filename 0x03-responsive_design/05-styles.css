@@ -47,7 +47,7 @@
     --line-height-big: 1.8;
   
     /** SECTION **/
-    --section-padding: 5rem 0;
+    --section-padding: 5rem 1.5rem;
     --section-header-padding: 0 0 3rem;
     --section-header-align: center;
     --section-title-font-size: var(--font-size-xx-large);
@@ -60,7 +60,7 @@
     --section-tagline-font-family: var(--font-family-headings);
     --section-tagline-font-weight: var(--font-weight-bold);
     --section-tagline-margin: 0;
-    --section-body-padding: 2rem 0 4rem;
+    --section-body-padding: 2rem 0 0rem;
     --section-footer-padding: 3rem 0 0;
     --section-footer-align: center;
   
@@ -170,11 +170,16 @@
   
   .visually-hidden:not(:focus):not(:active) {
     position: absolute !important;
-    height: auto;
-    width: 100%;
+    height: 1px;
+    width: 1px;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
+  }
+
+  main img {
+	  width: 100%;
+	  height: auto;
   }
   
   /*** 2. LAYOUT ***/
@@ -183,7 +188,7 @@
       ============================= */
   
   .container {
-    width: max-width;
+    max-width: 960px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -195,29 +200,37 @@
     margin: -1rem;
     padding: 0;
     list-style: none;
-    flex-direction: column;
-    margin: 0;
   }
   
   .row {
     display: flex;
-    flex-direction: column;
-    margin: 0;
   }
   
   [class*='col-'] {
-    margin: 0 0 3rem 0;
+    margin: 1rem;
   }
   
   .col-1-3 {
-    width: 100%;
+    width: calc((100% / 3) - 2rem);
   }
   
   .col-1-2 {
-    width: 100%;
+    width: calc((100% / 2) - 2rem);
   }
-  @media (max-width: 767px) {
+
+  @media screen and (max-width: 767px) {
+	  .ul.row, .row {
+		  flex-direction: column;
+		  margin: 0;
+	  }
+	  [class^="col-"] {
+		  margin: 0 0 3rem 0;
+	  }
+	  .col-1-3, .col-1-2 {
+		  width: 100%;
+	  }
   }
+  
   /* Navbar
       ============================= */
   
@@ -239,7 +252,6 @@
   .nav .nav-item + .nav-item {
     margin: var(--nav-item-margin);
   }
-  
   
   .nav .nav-link {
     display: block;
@@ -267,13 +279,14 @@
     background-color: var(--color-primary);
     width: 100%;
   }
-  @media (max-width: 767px) {
-	  :root {
-		  --nav-item-margin: 0;
-	  }
+
+  @media screen and (max-width: 767px) {
 	  .navbar-menu {
 		  display: none;
 		  flex: 1;
+	  }
+	  :root {
+		  --nav-item-margin: 0;
 	  }
   }
   
@@ -286,27 +299,38 @@
     z-index: 3;
     background: transparent;
   }
+  
   .header .nav {
 	  flex-direction: column;
 	  overflow: hidden;
 	  max-height: 0;
 	  transition: max-height .2s ease-out;
   }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .header .menu-icon {
 	  cursor: pointer;
 	  padding: 2.5rem;
 	  position: relative;
 	  user-select: none;
   }
+
   .header .menu-icon .navicon {
 	  background: var(--color-white);
 	  display: block;
 	  width: 2rem;
 	  height: .2rem;
 	  position: relative;
-	  transition: background .2s ease-out;
+	  transition: background .2s ease-out
   }
-  .header .menu-icon .navicon::before {
+
+  .header .menu-icon .navicon::before,
+  .header .menu-icon .navicon::after {
 	  content: "";
 	  display: block;
 	  width: 100%;
@@ -314,22 +338,14 @@
 	  position: absolute;
 	  background: var(--color-white);
 	  transition: all .2s ease-out;
+  }
+
+  .header .menu-icon .navicon::before {
 	  top: .7rem;
   }
-   .header .menu-icon .navicon::after {
-          content: "";
-          display: block;
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          background: var(--color-white);
-          transition: all .2s ease-out;
-          top: -.7rem;
-  }
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+  .header .menu-icon .navicon::after {
+	  top: -.7rem;
   }
   
   /* Footer
@@ -449,10 +465,9 @@
   }
   /* Section Latest news
       ============================= */
-  @media (max-width: 767px) {
-	  .section-latest-news .row {
-		  flex-direction: row-reverse;
-	  }
+  
+  .section-latest-news .row {
+    flex-direction: row-reverse;
   }
   
   /* Section SERVICES
@@ -912,4 +927,4 @@
     padding: 0;
     cursor: text;
     margin: 0 1rem;
-  }
+  } 
